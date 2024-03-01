@@ -1,5 +1,7 @@
 ## This is a backend for my clone of [bgjargon](https://www.bgjargon.com/)
 
+I really like the site because authentication is de-emphasized. The importance is the actual content and not just who wrote what which is vear near and dear to me.
+
 As you can see in the .env file I am using [Neon](https://neon.tech/) for hosting my Serverless PostgreSQL db.
 
 I am getting into Prisma so this uses it over TypeORM or Sequelize
