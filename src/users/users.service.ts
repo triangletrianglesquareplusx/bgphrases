@@ -7,10 +7,18 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   getUserById(id: number) {
-    return this.prisma.user.findUnique({ where: { id } });
+    return this.prisma.author.findUnique({ where: { id } });
   }
 
-  createUser(data: Prisma.UserCreateInput) {
-    return this.prisma.user.create({ data });
+  /*for the time being we will allow finding 
+  author by displayName since in the schema we have confirmed that
+  displayName is unique
+  */
+
+  getUserByDisplayName(displayName: string) {
+    return this.prisma.author.findUnique({ where: { displayName } });
+  }
+  createUser(data: Prisma.AuthorCreateInput) {
+    return this.prisma.author.create({ data });
   }
 }
