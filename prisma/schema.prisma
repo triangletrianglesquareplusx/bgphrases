@@ -19,6 +19,25 @@ model Phrase {
   word String
   definition String
   example_usage String
-  likes Int
-  dislikes Int
+  likes Int @default(0)
+  dislikes Int @default(0)
+  user User @relation(fields:[userId], references: [id])
+  userId Int 
+  tags Tag[]
+}
+
+model User {
+  id Int @default(autoincrement()) @id
+  displayName String @unique
+  location String
+  phrases Phrase[]
+
+}
+
+model Tag {
+  id Int @default(autoincrement()) @id
+  name String
+  phrase Phrase @relation(fields: [phraseId], references: [id])
+  phraseId Int
+
 }
