@@ -16,10 +16,11 @@ import { CreateUserDto } from './dtos/CreateUser.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get('id')
+  @Get(':id')
   async getUserById(@Param('id', ParseIntPipe) id: number) {
     const user = await this.usersService.getUserById(id);
-    if (!user) throw new HttpException('user Not Found', 404);
+    if (!user) throw new HttpException('User Not Found', 404);
+    return user;
   }
 
   @Post()
