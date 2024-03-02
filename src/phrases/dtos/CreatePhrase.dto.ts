@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class CreatePhraseDto {
   @IsString()
@@ -14,7 +14,16 @@ export class CreatePhraseDto {
   @IsNotEmpty()
   example_usage: string;
 
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  user: number;
+  displayName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  location: string;
+
+  // @IsString({}, { each: true })
+  // @IsNotEmpty({ each: true })
+  // @IsArray()
+  // tags: string[];
 }
