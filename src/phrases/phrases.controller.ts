@@ -5,6 +5,7 @@ import {
   ValidationPipe,
   Body,
   Req,
+  Get,
 } from '@nestjs/common';
 import { CreatePhraseDto } from './dtos/CreatePhrase.dto';
 import { PhrasesService } from './phrases.service';
@@ -21,5 +22,10 @@ export class PhrasesController {
   ) {
     console.log(request.body);
     return this.phrasesService.createPhrase(displayName, createPhraseDto);
+  }
+
+  @Get('all')
+  getAllPhrases() {
+    return this.phrasesService.getAllPhrases();
   }
 }

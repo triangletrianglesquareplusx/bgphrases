@@ -25,10 +25,14 @@ export class PhrasesService {
             },
           },
         });
-        console.log(phrase);
+        return phrase;
       }
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async getAllPhrases() {
+    return this.prisma.phrase.findMany();
   }
 }

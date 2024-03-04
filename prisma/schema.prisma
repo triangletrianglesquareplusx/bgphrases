@@ -24,7 +24,7 @@ model Phrase {
   dislikes Int @default(0)
   author Author @relation(fields:[authorId], references: [id])
   authorId Int 
-  tags PhraseTags[]
+  tags Tag[]
 }
 
 model Author {
@@ -38,15 +38,7 @@ model Author {
 model Tag {
   id Int @default(autoincrement()) @id
   name String
-  phrases PhraseTags[]
+  phrases Phrase[]
 
 }
 
-model PhraseTags {
-  phrase Phrase @relation(fields: [phraseId], references: [id])
-  phraseId Int
-  tag Tag @relation(fields: [tagId], references: [id])
-  tagId Int
-
-  @@id([phraseId, tagId])
-}

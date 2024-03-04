@@ -21,9 +21,4 @@ export class CreatePhraseDto {
   @IsString()
   @IsNotEmpty()
   location: string;
-
-  // @IsString({}, { each: true })
-  // @IsNotEmpty({ each: true })
-  // @IsArray()
-  // tags: string[];
 }
