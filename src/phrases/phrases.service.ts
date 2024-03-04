@@ -1,18 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/shared/prisma.service';
-import { UsersService } from 'src/users/users.service';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class PhrasesService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly users: UsersService,
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  async createPhrase(displayName, data: Prisma.PhraseCreateWithoutAuthorInput) {
+  async createPhrase(
+    displayName,
+    tagsInUse,
+    data: Prisma.PhraseCreateWithoutAuthorInput,
+  ) {
     try {
-      const user = await this.users.getUserByDisplayName(displayName);
+      const user = await this.prisma.author.findUnique({
+        where: { displayName },
+      });
       const { id } = user;
       if (user) {
         const phrase = await this.prisma.phrase.create({
@@ -22,6 +24,9 @@ export class PhrasesService {
               connect: {
                 id,
               },
+            },
+            tags: {
+              create: tagsInUse.map((item) => item),
             },
           },
         });
@@ -34,5 +39,14 @@ export class PhrasesService {
 
   async getAllPhrases() {
     return this.prisma.phrase.findMany();
+  }
+
+  async getAllTagsOfSpecificPhrase(id: number) {
+    return this.prisma.phrase.findUnique({
+      where: { id },
+      include: {
+        tags: true,
+      },
+    });
   }
 }

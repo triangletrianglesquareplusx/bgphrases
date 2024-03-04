@@ -6,6 +6,8 @@ import {
   Body,
   Req,
   Get,
+  Param,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CreatePhraseDto } from './dtos/CreatePhrase.dto';
 import { PhrasesService } from './phrases.service';
@@ -17,15 +19,24 @@ export class PhrasesController {
   @Post('create')
   @UsePipes(ValidationPipe)
   createPhrase(
-    @Body() { displayName, ...createPhraseDto }: CreatePhraseDto,
+    @Body() { displayName, tagsInUse, ...createPhraseDto }: CreatePhraseDto,
     @Req() request: any,
   ) {
-    console.log(request.body);
-    return this.phrasesService.createPhrase(displayName, createPhraseDto);
+    console.log(request.body.tagsInUse);
+    return this.phrasesService.createPhrase(
+      displayName,
+      tagsInUse,
+      createPhraseDto,
+    );
   }
 
   @Get('all')
   getAllPhrases() {
     return this.phrasesService.getAllPhrases();
+  }
+
+  @Get(':id')
+  getTagsOfSpecificPhrase(@Param('id', ParseIntPipe) id: number) {
+    return this.phrasesService.getAllTagsOfSpecificPhrase(id);
   }
 }

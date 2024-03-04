@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+  IsArray,
+} from 'class-validator';
 
 export class CreatePhraseDto {
   @IsString()
@@ -20,5 +26,9 @@ export class CreatePhraseDto {
 
   @IsString()
   @IsNotEmpty()
-  location: string;
+  @IsOptional()
+  location?: string;
+
+  @IsArray()
+  tagsInUse: string[];
 }
