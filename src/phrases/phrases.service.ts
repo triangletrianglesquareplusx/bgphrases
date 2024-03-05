@@ -54,4 +54,12 @@ export class PhrasesService {
       },
     });
   }
+
+  async getAllPhrasesOfSpecificAuthor(id: number) {
+    return this.prisma.phrase.findMany({
+      where: {
+        authorId: id,
+      },
+    });
+  }
 }

@@ -39,4 +39,9 @@ export class PhrasesController {
   getTagsOfSpecificPhrase(@Param('id', ParseIntPipe) id: number) {
     return this.phrasesService.getAllTagsOfSpecificPhrase(id);
   }
+
+  @Get('/author/:id')
+  getAllPhrasesOfSpecificAuthor(@Param('id', ParseIntPipe) id: number) {
+    return this.phrasesService.getAllPhrasesOfSpecificAuthor(id);
+  }
 }
