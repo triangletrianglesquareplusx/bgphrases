@@ -26,14 +26,19 @@ export class PhrasesService {
               },
             },
             tags: {
-              create: tagsInUse.map((item) => item),
+              connectOrCreate: tagsInUse.map((tag) => {
+                return {
+                  where: tag,
+                  create: tag,
+                };
+              }),
             },
           },
         });
         return phrase;
       }
     } catch (error) {
-      console.log(error);
+      return { message: error.message };
     }
   }
 
