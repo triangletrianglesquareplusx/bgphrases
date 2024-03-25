@@ -19,12 +19,15 @@ export class PhrasesController {
   @Post('create')
   @UsePipes(ValidationPipe)
   createPhrase(
-    @Body() { displayName, tagsInUse, ...createPhraseDto }: CreatePhraseDto,
+    @Body()
+    { displayName, tagsInUse, location, ...createPhraseDto }: CreatePhraseDto,
     @Req() request: any,
   ) {
     console.log(request.body.tagsInUse);
+    console.log(`location is in body ${location}`);
     return this.phrasesService.createPhrase(
       displayName,
+      location,
       tagsInUse,
       createPhraseDto,
     );

@@ -8,18 +8,21 @@ export class PhrasesService {
 
   async createPhrase(
     displayName,
+    location,
     tagsInUse,
-    data: Prisma.PhraseCreateWithoutAuthorInput,
+    values: Prisma.PhraseCreateWithoutAuthorInput,
   ) {
     try {
+      console.log(location, 'in first line of code');
       const user = await this.prisma.author.findUnique({
         where: { displayName },
       });
-      const { id } = user;
+
       if (user) {
+        const { id } = user;
         const phrase = await this.prisma.phrase.create({
           data: {
-            ...data,
+            ...values,
             author: {
               connect: {
                 id,
@@ -36,6 +39,16 @@ export class PhrasesService {
           },
         });
         return phrase;
+      } else if (!user) {
+        console.log(values);
+        console.log(displayName);
+        console.log('location is', location);
+        /*const newUser = await this.prisma.author.create({
+          data: {
+            displayName,
+            location,
+          },
+        });*/
       }
     } catch (error) {
       return { message: error.message };
