@@ -75,4 +75,12 @@ export class PhrasesService {
       },
     });
   }
+
+  async getAllPhrasesBySpecificTitle(title: string) {
+    return this.prisma.phrase.findMany({
+      where: {
+        word: title,
+      },
+    });
+  }
 }
