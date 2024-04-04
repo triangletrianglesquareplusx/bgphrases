@@ -47,4 +47,9 @@ export class PhrasesController {
   getAllPhrasesOfSpecificAuthor(@Param('id', ParseIntPipe) id: number) {
     return this.phrasesService.getAllPhrasesOfSpecificAuthor(id);
   }
+
+  @Get('/multiple/:title')
+  getAllPhrasesWithSpecificName(title: string) {
+    return this.phrasesService.getAllPhrasesBySpecificTitle(title);
+  }
 }
