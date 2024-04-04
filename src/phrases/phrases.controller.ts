@@ -49,7 +49,8 @@ export class PhrasesController {
   }
 
   @Get('/multiple/:title')
-  getAllPhrasesWithSpecificName(title: string) {
+  getAllPhrasesWithSpecificName(@Param('title') title: string) {
+    console.log(`title is ${title}`);
     return this.phrasesService.getAllPhrasesBySpecificTitle(title);
   }
 }
