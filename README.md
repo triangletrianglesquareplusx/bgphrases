@@ -4,7 +4,7 @@ I really like the site because authentication is de-emphasized. The importance i
 
 As you can see in the .env file I am using [Neon](https://neon.tech/) for hosting my Serverless PostgreSQL db.
 
-Read about how I hosted this in **Render** [Medium Article](https://medium.com/@preslavgetov/how-to-host-your-nest-js-app-on-render-step-by-step-guide-3a5203ed9577)
+Read about how I hosted this in [**Render**](https://render.com/) [Medium Article](https://medium.com/@preslavgetov/how-to-host-your-nest-js-app-on-render-step-by-step-guide-3a5203ed9577)
 
 I am getting into Prisma so this uses it over TypeORM or Sequelize
 <p align="center">
