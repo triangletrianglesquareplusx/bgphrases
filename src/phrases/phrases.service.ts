@@ -56,7 +56,11 @@ export class PhrasesService {
   }
 
   async getAllPhrases() {
-    return this.prisma.phrase.findMany();
+    return this.prisma.phrase.findMany({
+      orderBy: {
+        createdAt: 'asc',
+      },
+    });
   }
 
   async getAllTagsOfSpecificPhrase(id: number) {
