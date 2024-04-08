@@ -1,10 +1,10 @@
 import {
   Controller,
   Post,
+  Patch,
   UsePipes,
   ValidationPipe,
   Body,
-  Req,
   Get,
   Param,
   ParseIntPipe,
@@ -21,16 +21,23 @@ export class PhrasesController {
   createPhrase(
     @Body()
     { displayName, tagsInUse, location, ...createPhraseDto }: CreatePhraseDto,
-    @Req() request: any,
   ) {
-    console.log(request.body.tagsInUse);
-    console.log(`location is in body ${location}`);
     return this.phrasesService.createPhrase(
       displayName,
       location,
       tagsInUse,
       createPhraseDto,
     );
+  }
+
+  @Patch('incrlike/:id')
+  increaseSpecificPhraseLikes(@Param('id', ParseIntPipe) id: number) {
+    this.phrasesService.updatePhraseLikes(id);
+  }
+
+  @Patch('incrdislike/:id')
+  increaseSpecificPhraseDislikes(@Param('id', ParseIntPipe) id: number) {
+    this.phrasesService.updatePhraseDislikes(id);
   }
 
   @Get('all')

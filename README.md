@@ -39,3 +39,7 @@ I am getting into Prisma so this uses it over TypeORM or Sequelize
 ## Caveats
 
 Be aware that exactly as [bgjargon.com](https://www.bgjargon.com/) it is possible for multiple phrases to have the same name and that they also can have the same or different author. 
+
+### Things that have helped me
+
+[This note on a new Prisma feature](https://github.com/prisma/prisma/discussions/3176)

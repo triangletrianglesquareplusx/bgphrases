@@ -83,4 +83,26 @@ export class PhrasesService {
       },
     });
   }
+
+  async updatePhraseLikes(id: number) {
+    return await this.prisma.phrase.update({
+      where: {
+        id: id,
+      },
+      data: {
+        likes: { increment: 1 },
+      },
+    });
+  }
+
+  async updatePhraseDislikes(id: number) {
+    return await this.prisma.phrase.update({
+      where: {
+        id: id,
+      },
+      data: {
+        dislikes: { increment: 1 },
+      },
+    });
+  }
 }
